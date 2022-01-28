@@ -66,6 +66,6 @@ class NoteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Note::destroy($id);
     }
 }

@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('notes', [NoteController::class, 'store']);
     Route::get('notes/{id}', [NoteController::class, 'show']);
     Route::put('notes/{id}', [NoteController::class, 'update']);
+    Route::delete('notes/{id}', [NoteController::class, 'destroy']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

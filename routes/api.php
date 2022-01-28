@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/password', [PasswordController::class, 'update']);
 
     Route::get('/notes', [NoteController::class, 'index']);
+    Route::post('/notes', [NoteController::class, 'store']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

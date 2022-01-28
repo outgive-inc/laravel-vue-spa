@@ -31,8 +31,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
 
-    Route::get('/notes', [NoteController::class, 'index']);
-    Route::post('/notes', [NoteController::class, 'store']);
+    //this is used when we intend to do only CRUD operations,
+    //so we don't have to define each route individually
+    //Route::resource('notes', NoteController::class);
+
+    Route::get('notes', [NoteController::class, 'index']);
+    Route::post('notes', [NoteController::class, 'store']);
+    Route::get('notes/{id}', [NoteController::class, 'show']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

@@ -41,7 +41,7 @@ class NoteController extends Controller
      */
     public function show($id)
     {
-        //
+        return Note::find($id);
     }
 
     /**

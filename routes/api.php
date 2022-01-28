@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('notes', [NoteController::class, 'index']);
     Route::post('notes', [NoteController::class, 'store']);
     Route::get('notes/{id}', [NoteController::class, 'show']);
+    Route::put('notes/{id}', [NoteController::class, 'update']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\RateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('notes/{id}', [NoteController::class, 'show']);
     Route::put('notes/{id}', [NoteController::class, 'update']);
     Route::delete('notes/{id}', [NoteController::class, 'destroy']);
+
+    Route::post('rates', [RateController::class, 'store']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

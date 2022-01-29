@@ -24,11 +24,13 @@
           </li>
           <li class="nav-item mx-2">
             <router-link :to="{ name: 'notes' }" class="nav-link">
-                {{ $t('notes') }}
-              </router-link>
+              {{ $t('manage_notes') }}
+            </router-link>
           </li>
           <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Get Shipment Rates</a>
+            <router-link :to="{ name: 'rates' }" class="nav-link">
+              {{ $t('get_shipment_rates') }}
+            </router-link>
           </li>
         </ul>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-10 m-auto">
-      <h2>Notes</h2>
+      <h2>Manage Notes</h2>
       <AddNote />
       <Notes />
     </div>
@@ -20,7 +20,7 @@ export default {
   },
 
   metaInfo () {
-    return { title: this.$t('notes') }
+    return { title: this.$t('manage_notes') }
   }
 }
 </script>

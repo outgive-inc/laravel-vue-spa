@@ -16,6 +16,21 @@
             <a class="nav-link" href="#">Link</a>
           </li> -->
         </ul>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item active mx-2">
+            <router-link :to="{ name: 'home' }" class="nav-link" active-class="active">
+                {{ $t('home') }}
+              </router-link>
+          </li>
+          <li class="nav-item mx-2">
+            <router-link :to="{ name: 'notes' }" class="nav-link">
+                {{ $t('notes') }}
+              </router-link>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Get Shipment Rates</a>
+          </li>
+        </ul>
 
         <ul class="navbar-nav ms-auto">
           <!-- Authenticated -->

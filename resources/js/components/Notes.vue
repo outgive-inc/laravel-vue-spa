@@ -8,6 +8,7 @@
       <h3>{{ note.title }}</h3>
       <p>{{ note.content }}</p>
 
+      <button @click="editNote(note)" class="btn btn-warning mb-2">Edit</button>
       <button @click="deleteNote(note.id)" class="btn btn-danger">Delete</button>
     </div>
   </div>
@@ -21,7 +22,8 @@ export default {
   methods: {
     ...mapActions({
       fetchNotes: 'notes/fetchNotes',
-      deleteNote: 'notes/deleteNote'
+      deleteNote: 'notes/deleteNote',
+      editNote: 'notes/editNote'
     })
   },
   computed: mapGetters({allNotes: 'notes/allNotes'}),

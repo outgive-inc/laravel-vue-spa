@@ -12,10 +12,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Notes",
-  computed: mapGetters(["allNotes"])
+  methods: {
+    ...mapActions({fetchNotes: 'notes/fetchNotes'})
+  },
+  computed: mapGetters({allNotes: 'notes/allNotes'}),
+  created() {
+    this.fetchNotes()
+  }
 };
 </script>

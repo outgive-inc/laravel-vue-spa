@@ -1,20 +1,28 @@
 import axios from 'axios';
+import * as types from '../mutation-types';
 
-const state = {
+// state
+export const state = {
   notes: []
 };
 
-const getters = {
+// getters
+export const getters = {
   allNotes: state => state.notes
 };
 
-const actions = {};
+// mutations
+export const mutations = {
+  [types.FETCH_NOTES] (state, notes) {
+    state.notes = notes
+  }
+};
 
-const mutations = {};
+// actions
+export const actions = {
+  async fetchNotes({ commit }) {
+    const response = await axios.get('/api/notes');
 
-export default {
-  state,
-  getters,
-  actions,
-  mutations
+    commit(types.FETCH_NOTES, response.data)
+  }
 };

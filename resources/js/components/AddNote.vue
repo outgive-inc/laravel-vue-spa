@@ -1,15 +1,15 @@
 <template>
   <div>
-    <form @submit.prevent="addNote" class="mb-3">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Title" v-model="note.title">
+    <form @submit="onSubmit" class="my-3">
+      <div class="form-group mb-2">
+        <input type="text" class="form-control" placeholder="Title" v-model="title">
       </div>
-      <div class="form-group">
-        <textarea class="form-control" placeholder="Content" v-model="note.content"></textarea>
+      <div class="form-group mb-2">
+        <textarea class="form-control" placeholder="Content" v-model="content"></textarea>
       </div>
-      <button type="submit" class="btn btn-light btn-block">Save</button>
+      <input type="submit" class="btn btn-primary btn-block" value="Save" />
+      <input type="button" @click="clearForm()" class="btn btn-danger btn-block" value="Cancel" />
     </form>
-    <button @click="clearForm()" class="btn btn-danger btn-block">Cancel</button>
   </div>
 </template>
 
@@ -24,13 +24,18 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addNote"]),
+    ...mapActions({addNote: "notes/addNote"}),
     onSubmit(e) {
       e.preventDefault();
       this.addNote({
         "title": this.title,
         "content": this.content
       });
+      this.clearForm();
+    },
+    clearForm() {
+      this.title = '';
+      this.content = '';
     }
   }
 };

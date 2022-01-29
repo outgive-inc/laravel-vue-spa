@@ -1,15 +1,17 @@
 <template>
   <div>
     <div
-      class="card card-body mb-2"
+      class="card mb-3"
       v-for="note in allNotes"
       :key="note.id"
     >
-      <h3>{{ note.title }}</h3>
-      <p>{{ note.content }}</p>
+      <div class="card-body">
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.content }}</p>
 
-      <button @click="editNote(note)" class="btn btn-warning mb-2">Edit</button>
-      <button @click="deleteNote(note.id)" class="btn btn-danger">Delete</button>
+        <button @click="editNote(note)" class="btn btn-warning">Edit</button>
+        <button @click="deleteNote(note.id)" class="btn btn-danger">Delete</button>
+      </div>
     </div>
   </div>
 </template>

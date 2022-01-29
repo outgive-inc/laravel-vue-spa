@@ -2,10 +2,12 @@
   <div>
     <form @submit="onSubmit" class="my-3">
       <div class="form-group mb-2">
-        <input type="text" class="form-control" placeholder="Title" v-model="currentNote.title">
+        <label for="title">Title <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title" v-model="currentNote.title" required>
       </div>
       <div class="form-group mb-2">
-        <textarea class="form-control" placeholder="Content" v-model="currentNote.content"></textarea>
+        <label for="content">Content <span class="text-danger">*</span></label>
+        <textarea class="form-control" id="content" name="content" placeholder="Content" v-model="currentNote.content" required></textarea>
       </div>
       <input type="submit" class="btn btn-primary btn-block" value="Save" />
       <input type="button" @click="clearForm()" class="btn btn-danger btn-block" value="Cancel" />

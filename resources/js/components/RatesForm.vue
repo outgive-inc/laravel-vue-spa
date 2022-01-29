@@ -1,16 +1,21 @@
 <template>
-  <div ref="rates_container">
+  <div>
+    <div v-if="validationErrors" class="alert alert-danger">
+        <ul>
+            <li v-for="(value, key, index) in validationErrors" :key="index">{{ value }}</li>
+        </ul>
+    </div>
     <form @submit="onSubmit" class="my-3" ref="input_rates" id="rates_form">
       <div class="row mb-2">
         <div class="form-group col">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" v-model="rates_input.name" id="name" placeholder="Name">
+          <label for="name">Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.name" id="name" placeholder="Name" required>
         </div>
       </div>
       <div class="row mb-2">
         <div class="form-group col-md-5">
-          <label for="address1">Address 1</label>
-          <input type="text" class="form-control" v-model="rates_input.address1" id="address1" placeholder="Address 1">
+          <label for="address1">Address 1 <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.address1" id="address1" placeholder="Address 1" required>
         </div>
         <div class="form-group col-md-5">
           <label for="address2">Address 2</label>
@@ -18,7 +23,7 @@
         </div>
         <div class="form-group col-md-2">
           <label for="region_code">Region</label>
-          <select class="form-control" v-model="rates_input.region_code" id="region_code" name="region_code">
+          <select class="form-control" v-model="rates_input.region" id="region_code" name="region_code">
             <option value="BC">BC</option>
             <option value="ON">ON</option>
           </select>
@@ -26,30 +31,30 @@
       </div>
       <div class="row mb-2">
         <div class="form-group col-md-3">
-          <label for="city">City</label>
-          <input type="text" class="form-control" v-model="rates_input.city" id="city" placeholder="City">
+          <label for="city">City <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.city" id="city" placeholder="City" required>
         </div>
         <div class="form-group col-md-3">
-          <label for="province_code">Province</label>
-          <input type="text" class="form-control" v-model="rates_input.province_code" id="province_code" placeholder="Province">
+          <label for="province_code">Province <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.province_code" id="province_code" placeholder="Province" required>
         </div>
         <div class="form-group col-md-3">
-          <label for="postal_code">Postal Code</label>
-          <input type="text" class="form-control" v-model="rates_input.postal_code" id="postal_code" placeholder="Postal Code">
+          <label for="postal_code">Postal Code <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.postal_code" id="postal_code" placeholder="Postal Code" required>
         </div>
         <div class="form-group col-md-3">
-          <label for="country_code">Country</label>
-          <input type="text" class="form-control" v-model="rates_input.country_code" id="country_code" placeholder="Country">
+          <label for="country_code">Country <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.country_code" id="country_code" placeholder="Country" required>
         </div>
       </div>
       <div class="row mb-2">
         <div class="form-group col-md-2">
-          <label for="weight">Weight</label>
-          <input type="text" class="form-control" v-model="rates_input.weight" id="weight" placeholder="Weight">
+          <label for="weight">Weight <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.weight" @keypress="validateNumber" id="weight" placeholder="Weight" required>
         </div>
         <div class="form-group col-md-2">
-          <label for="weight_unit">Unit</label>
-          <select class="form-control" v-model="rates_input.weight_unit" id="weight_unit">
+          <label for="weight_unit">Unit <span class="text-danger">*</span></label>
+          <select class="form-control" v-model="rates_input.weight_unit" id="weight_unit" required>
             <option value="lbs">lbs</option>
             <option value="kg">kg</option>
             <option value="g">g</option>
@@ -58,19 +63,19 @@
         </div>
         <div class="form-group col-md-2">
           <label for="length">Length</label>
-          <input type="text" class="form-control" v-model="rates_input.length" id="length" name="length" placeholder="Length">
+          <input type="text" class="form-control" v-model="rates_input.length" @keypress="validateNumber" id="length" name="length" placeholder="Length">
         </div>
         <div class="form-group col-md-2">
           <label for="width">Width</label>
-          <input type="text" class="form-control" v-model="rates_input.width" id="width" name="width" placeholder="Width">
+          <input type="text" class="form-control" v-model="rates_input.width" @keypress="validateNumber" id="width" name="width" placeholder="Width">
         </div>
         <div class="form-group col-md-2">
           <label for="height">Height</label>
-          <input type="text" class="form-control" v-model="rates_input.height" id="height" name="height" placeholder="Height">
+          <input type="text" class="form-control" v-model="rates_input.height" @keypress="validateNumber" id="height" name="height" placeholder="Height">
         </div>
         <div class="form-group col-md-2">
-          <label for="size_unit">Unit</label>
-          <select class="form-control" v-model="rates_input.size_unit" id="size_unit" name="size_unit">
+          <label for="size_unit">Unit <span class="text-danger">*</span></label>
+          <select class="form-control" v-model="rates_input.size_unit" id="size_unit" name="size_unit" required>
             <option value="cm">cm</option>
             <option value="in">in</option>
           </select>
@@ -78,26 +83,26 @@
       </div>
       <div class="row mb-2">
         <div class="form-group col-md-8">
-          <label for="package_contents">Package Contents</label>
-          <input type="text" class="form-control" v-model="rates_input.package_contents" id="package_contents" placeholder="Package Contents">
+          <label for="package_contents">Package Contents <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.package_contents" id="package_contents" placeholder="Package Contents" required>
         </div>
 
         <div class="form-group col-md-4">
-          <label for="value">Value</label>
-          <input type="text" class="form-control" v-model="rates_input.value" id="value" name="value" placeholder="Value">
+          <label for="value">Value <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" v-model="rates_input.value" @keypress="validateNumber" id="value" name="value" placeholder="Value" required>
         </div>
       </div>
       <div class="row mb-2">
         <div class="form-group col-md-3">
-          <label for="currency">Currency</label>
-          <select class="form-control" v-model="rates_input.currency" id="currency" name="currency">
+          <label for="currency">Currency <span class="text-danger">*</span></label>
+          <select class="form-control" v-model="rates_input.currency" id="currency" name="currency" required>
             <option value="CAD">CAD</option>
             <option value="USD">USD</option>
           </select>
         </div>
-        <div class="form-group col-md-3">
-          <label for="package_type">Package Type</label>
-          <select class="form-control" v-model="rates_input.package_type" id="package_type" name="package_type">
+        <div class="form-group col-md-4">
+          <label for="package_type">Package Type <span class="text-danger">*</span></label>
+          <select class="form-control" v-model="rates_input.package_type" id="package_type" name="package_type" required>
             <option value="parcel">parcel</option>
             <option value="legal_flat_rate_envelope">legal_flat_rate_envelope</option>
             <option value="flat_rate_padded_envelope">flat_rate_padded_envelope</option>
@@ -210,13 +215,14 @@ function initialState (){
       "package_contents": "",
       "value": 0,
       "currency": "CAD",
-      "package_type": "",
+      "package_type": "parcel",
       "signature_confirmation": true,
       "purchase_label": true,
       "insured": true,
       "region": "BC"
     },
-    rates: []
+    rates: [],
+    validationErrors: ''
   }
 }
 
@@ -226,23 +232,44 @@ export default {
     return initialState()
   },
   methods: {
+    validateNumber: (event) => {
+      let keyCode = event.keyCode;
+      if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
+        event.preventDefault();
+      }
+    },
     onSubmit(e) {
       e.preventDefault();
+
       axios.post(
         '/api/rates',
         { ...this.rates_input }
       )
         .then(response => {
+          this.validationErrors = '';
           console.log(response.data);
           if(response.data.success) {
             this.rates = response.data.rates;
+          } else {
+            this.rates = [];
+            this.storeErrors(response.data.errors);
           }
         })
-        .catch(err => console.log(err));
+        .catch(error => {
+          if (error.response.status == 422 && error.response.data && error.response.data.errors){
+            this.rates = [];
+            this.storeErrors(error.response.data.errors);
+          }
+        });
+    },
+    storeErrors(errors) {
+      errors = Object.values(errors);
+      errors = errors.flat();
+      this.validationErrors = errors;
     },
     clearForm() {
       Object.assign(this.$data, initialState());
-    },
+    }
   },
 };
 </script>

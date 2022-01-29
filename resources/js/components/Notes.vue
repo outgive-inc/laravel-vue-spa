@@ -7,6 +7,8 @@
     >
       <h3>{{ note.title }}</h3>
       <p>{{ note.content }}</p>
+
+      <button @click="deleteNote(note.id)" class="btn btn-danger">Delete</button>
     </div>
   </div>
 </template>
@@ -17,7 +19,10 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Notes",
   methods: {
-    ...mapActions({fetchNotes: 'notes/fetchNotes'})
+    ...mapActions({
+      fetchNotes: 'notes/fetchNotes',
+      deleteNote: 'notes/deleteNote'
+    })
   },
   computed: mapGetters({allNotes: 'notes/allNotes'}),
   created() {

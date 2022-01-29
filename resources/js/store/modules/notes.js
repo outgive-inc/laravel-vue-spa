@@ -19,6 +19,10 @@ export const mutations = {
   [types.ADD_NOTE](state, note) {
     state.notes.unshift(note)
   }
+  ,
+  [types.DELETE_NOTE](state, id) {
+    state.notes = state.notes.filter(note => note.id !== id)
+  }
 };
 
 // actions
@@ -43,5 +47,10 @@ export const actions = {
     } catch (e) {
       console.log(e);
     }
+  },
+  async deleteNote({ commit }, id) {
+    await axios.delete(`/api/notes/${id}`);
+
+    commit(types.DELETE_NOTE, id);
   }
 };

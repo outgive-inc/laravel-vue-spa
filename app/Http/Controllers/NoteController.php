@@ -14,7 +14,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return Note::orderBy('id', 'desc')->get();;
+        return Note::orderBy('id', 'desc')->get();
     }
 
     /**

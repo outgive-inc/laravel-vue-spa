@@ -53,6 +53,10 @@ class NoteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
         $note = Note::find($id);
         $note->update($request->all());
         return $note;

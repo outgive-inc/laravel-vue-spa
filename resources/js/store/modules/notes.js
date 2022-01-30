@@ -43,13 +43,9 @@ export const mutations = {
     state.edit = false
   },
   [types.UPDATE_NOTE](state, updatedNote) {
-    state.notes = state.notes.map(note => {
-      if(note.id === updatedNote.id) {
-        return updatedNote;
-      } else {
-        return note;
-      }
-    })
+    const updatedNotes = state.notes.filter(note => note.id !== updatedNote.id);
+    updatedNotes.unshift(updatedNote);
+    state.notes = updatedNotes;
   }
 };
 

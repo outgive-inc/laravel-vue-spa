@@ -247,9 +247,9 @@ export default {
       )
         .then(response => {
           this.validationErrors = '';
-          console.log(response.data);
           if(response.data.success) {
             this.rates = response.data.rates;
+            this.$refs.show_rates.scrollIntoView();
           } else {
             this.rates = [];
             this.storeErrors(response.data.errors);

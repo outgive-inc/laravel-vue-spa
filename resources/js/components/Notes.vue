@@ -9,7 +9,7 @@
         <h3>{{ note.title }}</h3>
         <p>{{ note.content }}</p>
 
-        <button @click="editNote(note)" class="btn btn-warning">Edit</button>
+        <button @click="editHandler(note)" class="btn btn-warning">Edit</button>
         <button @click="deleteNote(note.id)" class="btn btn-danger">Delete</button>
       </div>
     </div>
@@ -26,7 +26,14 @@ export default {
       fetchNotes: 'notes/fetchNotes',
       deleteNote: 'notes/deleteNote',
       editNote: 'notes/editNote'
-    })
+    }),
+    editHandler(note) {
+      this.moveUp();
+      this.editNote(note);
+    },
+    moveUp(){
+      window.scrollTo(0,0);
+    }
   },
   computed: mapGetters({allNotes: 'notes/allNotes'}),
   created() {

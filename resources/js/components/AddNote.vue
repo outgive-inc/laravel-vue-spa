@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div v-if="validationErrors" class="alert alert-danger">
+      <ul>
+          <li v-for="(value, key, index) in validationErrors" :key="index">{{ value }}</li>
+      </ul>
+    </div>
     <form @submit="onSubmit" class="my-3">
       <div class="form-group mb-2">
         <label for="title">Title <span class="text-danger">*</span></label>
@@ -41,6 +46,6 @@ export default {
       }
     }
   },
-  computed: mapGetters({currentNote: 'notes/currentNote', editMode: 'notes/editMode'})
+  computed: mapGetters({currentNote: 'notes/currentNote', editMode: 'notes/editMode', validationErrors: 'notes/validationErrors'})
 };
 </script>

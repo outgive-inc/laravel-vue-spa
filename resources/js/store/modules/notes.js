@@ -9,14 +9,16 @@ export const state = {
     title: '',
     content: ''
   },
-  edit: false
+  edit: false,
+  errors: ''
 };
 
 // getters
 export const getters = {
   allNotes: state => state.notes,
   currentNote: state => state.note,
-  editMode: state => state.edit
+  editMode: state => state.edit,
+  validationErrors: state => state.errors
 };
 
 // mutations
@@ -25,6 +27,7 @@ export const mutations = {
     state.notes = notes
   },
   [types.ADD_NOTE](state, note) {
+    state.errors = '';
     state.notes.unshift(note)
   },
   [types.DELETE_NOTE](state, id) {
@@ -35,6 +38,7 @@ export const mutations = {
     state.edit = true
   },
   [types.CLEAR_NOTE_FORM](state) {
+    state.errors = '';
     state.note = {
       id: '',
       title: '',
@@ -43,9 +47,15 @@ export const mutations = {
     state.edit = false
   },
   [types.UPDATE_NOTE](state, updatedNote) {
+    state.errors = '';
     const updatedNotes = state.notes.filter(note => note.id !== updatedNote.id);
     updatedNotes.unshift(updatedNote);
     state.notes = updatedNotes;
+  },
+  [types.STORE_NOTE_ERRORS](state, errors) {
+    errors = Object.values(errors);
+    errors = errors.flat();
+    state.errors = errors;
   }
 };
 
@@ -69,8 +79,10 @@ export const actions = {
 
       commit(types.ADD_NOTE, response.data);
       commit(types.CLEAR_NOTE_FORM);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      if (error.response.status == 422 && error.response.data && error.response.data.errors) {
+        commit(types.STORE_NOTE_ERRORS, error.response.data.errors);
+      };
     }
   },
   async deleteNote({ commit }, id) {
@@ -93,8 +105,10 @@ export const actions = {
 
       commit(types.UPDATE_NOTE, response.data);
       commit(types.CLEAR_NOTE_FORM);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      if (error.response.status == 422 && error.response.data && error.response.data.errors) {
+        commit(types.STORE_NOTE_ERRORS, error.response.data.errors);
+      };
     }
   }
 };

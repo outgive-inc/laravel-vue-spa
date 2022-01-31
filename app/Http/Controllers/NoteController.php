@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Note;
+use Illuminate\Support\Carbon;
 
 class NoteController extends Controller
 {
@@ -13,7 +15,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
+        return Note::orderBy('created_at',"DESC")->get();
     }
 
     /**
@@ -34,7 +36,12 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newNote = new Note;
+        $newNote->title = $request->note["title"];
+        $newNote->content = $request->note["content"];
+        $newNote->save();
+
+        return $newNote;
     }
 
     /**
@@ -68,7 +75,17 @@ class NoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $existingNote = Note::find( $id );
+
+        if( $existingNote ){
+            // $existingNote->updated_at = $request->note["updated_at"] ? Carbon::now() : null;
+            $existingNote->title = $request->note['title'];
+            $existingNote->content = $request->note['content'];
+            $existingNote->save();
+            return $existingNote;
+        }
+
+        return "Note not found";
     }
 
     /**
@@ -79,6 +96,10 @@ class NoteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $existingNote = Note::find( $id );
+        if($existingNote){
+            $existingNote->delete();
+            return "Note successfully removed";
+        }
     }
 }

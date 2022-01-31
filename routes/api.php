@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,11 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
 });
+
+Route::get('/notes', [NoteController::class, 'index']);
+Route::prefix('/note')->group( function(){
+        Route::post('/store', [NoteController::class, 'store']);
+        Route::put('/{id}', [NoteController::class, 'update']);
+        Route::delete('/{id}', [NoteController::class, 'destroy']);
+    }
+);

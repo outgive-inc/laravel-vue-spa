@@ -2,14 +2,16 @@
   <div id="app">
     <loading ref="loading" />
 
-    <transition name="page" mode="out-in">
+    <!-- <transition name="page" mode="out-in">
       <component :is="layout" v-if="layout" />
-    </transition>
+    </transition> -->
+    <mother-container/>
   </div>
 </template>
 
 <script>
 import Loading from './Loading'
+import motherContainer from '../components/Note/motherContainer.vue'
 
 // Load layout components dynamically.
 const requireContext = require.context('~/layouts', false, /.*\.vue$/)
@@ -27,7 +29,8 @@ export default {
   el: '#app',
 
   components: {
-    Loading
+    Loading,
+    motherContainer
   },
 
   data: () => ({

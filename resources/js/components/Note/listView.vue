@@ -5,7 +5,7 @@
                 <input type="text" class="newNoteInput" v-model="newNote.title" placeholder="new note"/>
                 <button type="button" class="newNoteButton"
                 @click="addNote()"
-                :class="[newNote.title ? 'active' : 'inactive', 'plus']">Add</button>
+                :class="[newNote.title ? 'active' : 'inactive']">Add</button>
             </div>
             <div class="noteHeader">
                 <div v-for="(note, index) in notes" :key="index" class="title" v-bind:id="note.id" @click="selectNote(note)"     >
@@ -144,9 +144,6 @@ export default {
     margin-right: 10px;
     width: 100%;
     height: 10px;
-}
-.plus{
-    font-size: 20px;;
 }
 .active{
     color: #c9c95d;

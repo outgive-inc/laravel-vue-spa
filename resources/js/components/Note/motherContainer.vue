@@ -46,12 +46,12 @@ export default {
 </script>
 <style scoped>
 .NoteListContainer{
-    width: 1090px;
+    width: 1100px;
     margin: auto;
 }
 .heading{
     background: #e6e6e6;
-    padding: 10px;
+    
 }
 #title{
     text-align: center;

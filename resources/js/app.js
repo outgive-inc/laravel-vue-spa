@@ -14,5 +14,8 @@ new Vue({
   i18n,
   store,
   router,
-  ...App
+  ...App,
+  beforeCreate() {
+    Vue.prototype.$bus = this
+  }
 })

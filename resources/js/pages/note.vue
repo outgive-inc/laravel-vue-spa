@@ -4,7 +4,7 @@
     <div class="note-wrap">
       <NoteInput :addNote="addNote" />
       <NoteList :notes="notes" />
-      <NoteFooter />
+      <!-- <NoteFooter /> -->
     </div>
   </div>
 </div>
@@ -14,7 +14,7 @@
 
 import NoteInput from '../components/note/NoteInput'
 import NoteList from '../components/note/NoteList'
-import NoteFooter from '../components/note/NoteFooter'
+
 
 export default {
   middleware: 'auth',
@@ -23,7 +23,7 @@ export default {
     return { title: this.$t('note') }
   },
   name:'Note',
-  components:{NoteInput, NoteList, NoteFooter},
+  components:{NoteInput, NoteList},
   data() {
     return {
         notes:JSON.parse(localStorage.getItem('notes')) || []

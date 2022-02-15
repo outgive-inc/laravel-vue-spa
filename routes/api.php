@@ -11,6 +11,8 @@ use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Notes\NoteController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,4 +45,10 @@ Route::group(['middleware' => 'guest:api'], function () {
 
     Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
+});
+
+Route::group(['middleware' => 'auth:api'], function () {
+    
+    Route::post('addnote/', [NoteController::class, 'add']);
+    
 });

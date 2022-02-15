@@ -2,7 +2,7 @@
     <div class="note-input">
         <input type="text" placeholder="Please enter title" v-model="title"  />
         <textarea type="text" placeholder="Please enter the content" v-model="content"></textarea>
-        <button v-on:click="add">Submit</button>
+        <button v-on:click="add">Add</button>
     </div>
 </template>
 
@@ -57,7 +57,7 @@ export default {
         padding: 4px 7px;
     }
 
-    .note-input input:focus {
+    .note-input input:focus, textarea:focus {
         outline: none;
         border-color: rgba(82, 168, 236, 0.8);
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);

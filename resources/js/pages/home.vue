@@ -23,6 +23,10 @@
   import ListView from "./listView"//importing ListView.vue
   import APITask from "./apitask" //importing apitask.vue
   import axios from 'axios' //importing axios
+  let headers = {
+  "Authorization": `${process.env.MIX_VUE_BEARER_TOKEN}`
+};
+
 export default {
   middleware: 'auth',
 

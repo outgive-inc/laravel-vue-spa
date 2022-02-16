@@ -3,7 +3,7 @@
     <h3>Fetching API Task 2</h3>
     <h4>Checkout rates in Stallion Express</h4>
     <div class="user-form" style="padding: 10px">
-      <form>
+      <form @submit.prevent="getData" method="post">
       <input
         type="text"
         name="name"
@@ -146,7 +146,7 @@
         required
       />
       <br />
-      <input type="button" name="submit" class="btn-primary" value="Search"/>
+      <input type="submit" name="submit" class="btn-primary" value="Search"/>
       </form>
     </div>
   </div>
@@ -155,15 +155,17 @@
 <script>
 import axios from "axios";
 import Button from "../components/Button.vue";
-
-let userToken
+  let headers = {
+  "Authorization": `${process.env.MIX_VUE_BEARER_TOKEN}`
+};
 export default {
   components: { Button },
 
 
   data:function() {
     return {
-      name: "",
+        results: [],
+        name: "",
       address1: "",
       city: "",
       province_code: "",
@@ -183,20 +185,15 @@ export default {
       purchase_label: "",
       insured: "",
       region:"",
-
     };
   },
   methods: {
 
-     async getData(e) {
-      let result = await axios.post('https://sandbox.stallionexpress.ca/api/v3/rates',{
-        headers:{
+     getData() {
 
-        'Accept': 'application/json',
-          'Authorization' : 'Bearer YDchLhos8bDsSrdCn23jmjya08azjdaJ56Shu6tywNjb7ATFwRr8Zm8viM7S',
-          'cache-control':'no-cache'
 
-        },
+        let result =  axios.post('https://sandbox.stallionexpress.ca/api/v3/rates?',{
+        headers,
         name: this.name,
         address1: this.address1,
         city: this.city,
@@ -218,9 +215,13 @@ export default {
         insured:this.insured,
         region:this.region,
         },
-      );
-      result.data.headers['Authorization'];
-      e.preventDefault();
+      ).then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+
     }
   }
 };

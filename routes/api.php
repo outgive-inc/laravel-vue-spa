@@ -10,6 +10,11 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\notesController;
+use GuzzleHttp\Psr7\Header;
+
+use Illuminate\Http\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +34,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
+
+
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
@@ -44,3 +51,13 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
 });
+
+Route::get('/notes', [\App\Http\Controllers\notesController::class, 'index']);
+Route::prefix('/notes')->group (function (){
+    Route::post('/store',[notesController::class, 'store']);
+    Route::put('/{id}',[notesController::class, 'update']);
+    Route::delete('/{id}',[notesController::class, 'destroy']);
+
+});//Generating the group  of routes
+
+

@@ -30,5 +30,6 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => false,
+    'Bearer' => env ('YDchLhos8bDsSrdCn23jmjya08azjdaJ56Shu6tywNjb7ATFwRr8Zm8viM7S'),
 
 ];

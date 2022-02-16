@@ -128,8 +128,9 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+        Str::slug(env('VUE_BEARER_TOKEN', 'laravel'), '_').'_session'
     ),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -170,6 +171,8 @@ return [
 
     'secure' => env('SESSION_SECURE_COOKIE'),
 
+    'Bearer' => env ('YDchLhos8bDsSrdCn23jmjya08azjdaJ56Shu6tywNjb7ATFwRr8Zm8viM7S'),
+
     /*
     |--------------------------------------------------------------------------
     | HTTP Access Only
@@ -181,7 +184,7 @@ return [
     |
     */
 
-    'http_only' => true,
+    'http_only' => false,
 
     /*
     |--------------------------------------------------------------------------

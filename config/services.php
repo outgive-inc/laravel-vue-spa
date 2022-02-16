@@ -35,4 +35,5 @@ return [
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
     ],
 
+
 ];

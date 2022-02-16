@@ -14,30 +14,36 @@ Procedure to operate:
 
 ## Main Application
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/mainapplication.png)
 
 
 ## Login
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-## Login
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/Login.png)
 ## Registration
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-## TODO Task
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/Registration.png)
+
 ## Database
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-## Actions
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/Database.png)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-## Database after action
+## ToDO Task
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-## Todo app after action
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/Dashboard.png)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+## Tasks Detail Screenshot
+
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/NewTask.png)
+
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/addedtodatabase.png)
+
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/TaskCompleted.png)
+
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/newtaskadded.png)
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/newtaskaddedindb.png)
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/oldtaskdeleted.png)
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/oldtaskdeletedfromdb.png)
+
 ## Task2 Description
 
 For task2 I had implemented the form. I got error 401 due to bearer token.
@@ -45,6 +51,6 @@ I tried to fetch data using vue js instead of Laravel Sanctum.
 However, I got data using postman but it was not much usefull.
 It helped me to verify the token and generate the api/results url.
 The screenshot is attached below.
-## Task2 Screenshot
+## Task2 Error Screenshot
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/errorintask2.png)

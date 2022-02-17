@@ -14,6 +14,7 @@
     <div class="apiTask2">
       <APITask/> <!-- calling apitask.vue page and reloading list-->
     </div>
+    
   </div>
 
 </template>
@@ -23,9 +24,7 @@
   import ListView from "./listView"//importing ListView.vue
   import APITask from "./apitask" //importing apitask.vue
   import axios from 'axios' //importing axios
-  let headers = {
-  "Authorization": `${process.env.MIX_VUE_BEARER_TOKEN}`
-};
+import Apitask from './apitask.vue'
 
 export default {
   middleware: 'auth',
@@ -40,7 +39,8 @@ export default {
   components:{
     AddNote, //Generating component of addnote.vue
     ListView, //Generating component of ListView.vue
-    APITask //Generating component of apiTask.vue
+    APITask
+    
   },
   data:function(){
     return{

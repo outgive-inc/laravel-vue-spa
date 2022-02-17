@@ -18,6 +18,14 @@
         placeholder="Enter Address1"
         required
       />
+      
+      <input
+        type="text"
+        name="address2"
+        v-model="address2"
+        placeholder="Enter Address2"
+        required
+      />
       <input
         type="text"
         name="city"
@@ -146,27 +154,36 @@
         required
       />
       <br />
-      <input type="submit" name="submit" class="btn-primary" value="Search"/>
+      <input type="submit" name="submit" class="btn-primary" value="Submit"/>
       </form>
     </div>
-  </div>
+    <div>
+      <template v-for="item in results">
+       
+          {{ item}} 
+       
+      </template>
+      </div>
+    </div>
+  
 </template>
 
 <script>
 import axios from "axios";
 import Button from "../components/Button.vue";
-  let headers = {
-  "Authorization": `${process.env.MIX_VUE_BEARER_TOKEN}`
-};
+  const token = process.env.MIX_VUE_BEARER_TOKEN;
 export default {
   components: { Button },
 
 
   data:function() {
     return {
+
+      isSuccess:false,
         results: [],
         name: "",
       address1: "",
+      address2: "",
       city: "",
       province_code: "",
       postal_code: "",
@@ -189,13 +206,13 @@ export default {
   },
   methods: {
 
-     getData() {
-
-
-        let result =  axios.post('https://sandbox.stallionexpress.ca/api/v3/rates?',{
-        headers,
+     async getData() {
+        let results = axios.post('https://sandbox.stallionexpress.ca/api/v3/rates',{
+           success: "",
+           rates:[],
         name: this.name,
         address1: this.address1,
+        address2: this.address1,
         city: this.city,
         province_code: this.province_code,
         postal_code: this.postal_code,
@@ -206,7 +223,7 @@ export default {
         width:this.width,
         height:this.height,
         size_unit:this.size_unit,
-        package_content:this.package_contents,
+        package_contents:this.package_contents,
         value:this.value,
         currency:this.currency,
         package_type:this.package_type,
@@ -214,13 +231,18 @@ export default {
         purchase_label:this.purchase_label,
         insured:this.insured,
         region:this.region,
-        },
-      ).then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
+        },{
+          headers:{
+            'Authorization':`${token}`
+          }
+        }
+      )
+      .then((results)=>{
+        this.isSuccess = true;
+        console.log(results)
+        return this.results = results.data;
+
+      })
 
     }
   }
@@ -238,5 +260,9 @@ input[type="button"] {
   width: 200px;
   border-radius: 20px;
   margin: 10px;
+}
+.display-rates{
+  background: #8CC049;
+  border-radius: 20px 20px;
 }
 </style>

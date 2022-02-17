@@ -15,6 +15,7 @@ export default [
   { path: '/home', name: 'home', component: page('home.vue') },
 
   { path: '/note', name: 'note', component: page('note.vue') },
+  { path: '/rate', name: 'rate', component: page('rate.vue') },
 
   {
     path: '/settings',

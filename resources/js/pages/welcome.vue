@@ -24,6 +24,9 @@
       <div class="links">
         <a href="/note">Go to Note App</a>
       </div>
+      <div class="links">
+        <a href="/rate">Go to Rate Form</a>
+      </div>
     </div>
   </div>
 </template>

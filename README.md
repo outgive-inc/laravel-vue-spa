@@ -54,3 +54,7 @@ The screenshot is attached below.
 ## Task2 Error Screenshot
 
 ![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/errorintask2.png)
+
+## Task2 Completed
+
+![App Screenshot](https://github.com/pratikmore2796/laravel-vue-spa-challenge/img/Task2Completed.png)

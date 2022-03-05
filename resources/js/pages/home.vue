@@ -3,15 +3,21 @@
     <div class="col-lg-10 m-auto">
       <card :title="$t('home')">
         {{ $t('you_are_logged_in') }}
+        Welecome {{ user.name }}!
       </card>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 // import axios from 'axios'
 export default {
   middleware: 'auth',
+
+  computed: mapGetters({
+    user: 'auth/user'
+  }),
 
   // async asyncData () {
   //   const { data: projects } = await axios.get('/api/projects')

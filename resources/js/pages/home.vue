@@ -5,6 +5,12 @@
         {{ $t('you_are_logged_in') }}
         Welecome {{ user.name }}!
       </card>
+      
+  <!-- <router-link :to="{ name: 'note.edit' }">Edit Note</router-link> -->
+
+      <notes />
+
+
     </div>
   </div>
 </template>
@@ -12,7 +18,15 @@
 <script>
 import { mapGetters } from 'vuex'
 import axios from 'axios'
+import notes from './notes/notes.vue'
+
+
 export default {
+
+  components: {
+    notes
+  },
+
   middleware: 'auth',
 
   computed: mapGetters({
@@ -32,3 +46,9 @@ export default {
   }
 }
 </script>
+
+<style>
+#headerCard{
+  display: flex;
+}
+</style>

@@ -70,7 +70,7 @@ export default {
 
                 await axios.put(`/api/note/${this.$route.params.id}`, this.note)
                     .then(response=> {
-                        this.$router.push({ name: "home"})
+                        this.$router.push({ name: "notes"})
                     })
                     .catch(response=> {
                         console.log(error)

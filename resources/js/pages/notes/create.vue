@@ -52,7 +52,7 @@ export default {
 
                 await axios.post('/api/note', this.note)
                 .then(response=> {
-                    this.$router.push({name: "home"})
+                    this.$router.push({name: "notes"})
                 })
                 .catch(response=> {
                     console.log(error)

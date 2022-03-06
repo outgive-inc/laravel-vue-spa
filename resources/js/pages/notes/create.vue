@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-10 m-auto">
             
-            <h4>Create anew note</h4>
+            <h4>Create a new note</h4>
             
             <form class="mt-4" @submit.prevent="createNote">
                 <h4 v-if="formFilled" class="text-danger">Please Fill in all Required Fields</h4>

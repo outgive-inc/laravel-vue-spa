@@ -21,9 +21,7 @@
         {{ title }}
       </div>
 
-      <div class="links">
-        <a href="https://github.com/cretueusebiu/laravel-vue-spa">github.com/cretueusebiu/laravel-vue-spa</a>
-      </div>
+    <h2>Note Taking App</h2>
     </div>
   </div>
 </template>

@@ -74,7 +74,7 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        $note->fill($request->post()->save());
+        $note->fill($request->post())->save();
         return response()->json([
             'note'=>$note
         ]);

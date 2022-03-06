@@ -21,7 +21,7 @@
         {{ title }}
       </div>
 
-    <h2>Note Taking App</h2>
+    <h2>Note Taking and Shipping Rates Consulting App</h2>
     </div>
   </div>
 </template>

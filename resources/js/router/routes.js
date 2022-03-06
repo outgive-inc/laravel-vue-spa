@@ -14,8 +14,11 @@ export default [
 
   { path: '/home', name: 'home', component: page('home.vue') },
 
+  { path: '/notes', name: 'notes', component: page('notes/notes.vue')},
   { path: '/note/create', name: 'note.crate', component: page('notes/create.vue')},
   { path: '/note/edit', name: 'note.edit', component: page('notes/edit.vue')},
+
+  { path: '/rates', name: 'rates', component: page('rates/rates.vue')},
 
   {
     path: '/settings',

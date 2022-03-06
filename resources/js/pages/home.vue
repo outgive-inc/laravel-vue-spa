@@ -5,11 +5,26 @@
         {{ $t('you_are_logged_in') }}
         Welecome {{ user.name }}!
       </card>
+
+      <div class="row mt-4">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create Some Notes</h5>
+                <router-link class="btn btn-primary"  :to="{ name: 'notes' }">Notes</router-link>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Consult Shipping Rates</h5>
+                <router-link class="btn btn-primary"  :to="{ name: 'rates' }">Rates</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
       
-  <!-- <router-link :to="{ name: 'note.edit' }">Edit Note</router-link> -->
-
-      <notes />
-
 
     </div>
   </div>

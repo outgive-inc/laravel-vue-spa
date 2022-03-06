@@ -13,6 +13,13 @@ export default [
   { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
 
   { path: '/home', name: 'home', component: page('home.vue') },
+
+  { path: '/notes', name: 'notes', component: page('notes/notes.vue')},
+  { path: '/note/create', name: 'note.crate', component: page('notes/create.vue')},
+  { path: '/note/edit', name: 'note.edit', component: page('notes/edit.vue')},
+
+  { path: '/rates', name: 'rates', component: page('rates/rates.vue')},
+
   {
     path: '/settings',
     component: page('settings/index.vue'),
@@ -22,6 +29,7 @@ export default [
       { path: 'password', name: 'settings.password', component: page('settings/password.vue') }
     ]
   },
+
 
   { path: '*', component: page('errors/404.vue') }
 ]

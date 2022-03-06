@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="mb-5">
         <div class="card mt-4">
           <h5 class="card-header">Notes</h5>
           <div class="card-body">
@@ -12,7 +12,8 @@
                 <h5 class="card-title">{{note.title}}</h5>
                     <p class="card-text">{{note.content}}</p>
                     <router-link tag="button" class="btn btn-outline-primary btn-sm" :to="{ name: 'note.edit', params:{id: note.id} }"> Edit Note</router-link>
-                    <router-link tag="button" class="btn btn-outline-danger btn-sm" :to="{ name: 'note.crate' }"> Delete Note</router-link>
+                    <button class="btn btn-outline-danger btn-sm" @click="delteNote(note.id)">Delete Note</button>
+                    <!-- <router-link tag="button" class="btn btn-outline-danger btn-sm" :to="{ name: 'note.crate' }"> Delete Note</router-link> -->
             </div>
             <div class="card-footer">
                 <small class="text-muted">{{note.created_at}}</small>
@@ -48,6 +49,18 @@ export default {
                     console.log(error);
 
                 })
+        },
+
+        async delteNote(id){
+
+           await axios.delete(`/api/note/${id}`)
+                .then(respones=> {
+                    this.getNotes();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+
         }
     }
     

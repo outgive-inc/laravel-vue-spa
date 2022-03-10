@@ -13,10 +13,9 @@
                     <p class="card-text">{{note.content}}</p>
                     <router-link tag="button" class="btn btn-outline-primary btn-sm" :to="{ name: 'note.edit', params:{id: note.id} }"> Edit Note</router-link>
                     <button class="btn btn-outline-danger btn-sm" @click="delteNote(note.id)">Delete Note</button>
-                    <!-- <router-link tag="button" class="btn btn-outline-danger btn-sm" :to="{ name: 'note.crate' }"> Delete Note</router-link> -->
             </div>
             <div class="card-footer">
-                <small class="text-muted">{{note.created_at}}</small>
+                <small class="text-muted">{{note.created_at.slice(0, 10)}}</small>
             </div>
         </div>
         

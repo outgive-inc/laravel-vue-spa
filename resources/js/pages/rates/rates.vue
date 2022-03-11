@@ -4,11 +4,13 @@
           <h5 class="card-header">Shipping Rates</h5>
         </div>
 
-        <div class="container"> 
+        <div class="container mb-4"> 
             <div class="row"> 
                 <div class="col">
                     <!-- Rates form -->
                     <form class="row g-3 mt-4" @submit.prevent="getRates">
+                        <h4 v-if="formFilled" class="text-danger">Please Fill in all Required Fields</h4>
+
                         <div class="col-12">
                             <label for="name" class="form-label">Name</label>
                             <input required v-model="rates.name" type="text" class="form-control" id="name">
@@ -99,7 +101,6 @@
                             <select v-model="rates.region" id="region" class="form-select">
                                 <option value="ON">ON</option>
                                 <option value="BC">BC</option>
-                                <option value="QC">QC</option>
                             </select>
                         </div>
 
@@ -132,9 +133,10 @@
 
                         <!--  -->
                         <div class="col-md-4">
-                            <label for="value" class="form-label">Value</label>
-                            <input required v-model.number="rates.value" type="number" min="0" max="1000" class="form-control" id="value">
+                            <label for="width" class="form-label">Width</label>
+                            <input v-model.number="rates.width" type="number" min="0" max="1000" class="form-control" id="width">
                         </div>
+
                         <div class="col-md-4">
                             <label for="currency" class="form-label">Currency</label>
                             <select required v-model="rates.currency" id="currency" class="form-select">
@@ -152,8 +154,8 @@
 
                         <!--  -->
                         <div class="col-md-4">
-                            <label for="width" class="form-label">Width</label>
-                            <input v-model.number="rates.width" type="number" min="0" max="1000" class="form-control" id="width">
+                            <label for="value" class="form-label">Value</label>
+                            <input required v-model.number="rates.value" type="number" min="0" max="1000" class="form-control" id="value">
                         </div>
 
                         <div class="col-md-4">
@@ -196,9 +198,30 @@
                         </div>
                     </form>
                 </div>
-
             </div>
-            
+                
+            <div v-if="loading" class="d-flex align-items-center mt-4">
+                <strong>Loading...</strong>
+                <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+            </div>   
+
+        </div>
+
+        <div v-if="results">
+            <div class="card">
+                <h5 class="card-header">Your Results</h5>
+            </div>
+
+            <div  v-for="(rates, index) in ratesResults.rates" :key="index"  class="card border-secondary mb-3 mt-4">
+                <div class="card-body text-secondary">
+                    <h5 class="card-title">{{ratesResults.rates[index].postage_type}}</h5>
+                    <p class="card-text">Rate: $ {{ratesResults.rates[index].rate}} {{ratesResults.rates.currency}}</p>
+                    <p class="card-text">Tax: {{ratesResults.rates[index].tax}}</p>
+                    <p class="card-text">Total: $ {{ratesResults.rates[index].total}} {{ratesResults.rates.currency}}</p>
+                    <p class="card-text">Delivery in {{ratesResults.rates[index].delivery_days}} Business days</p>
+                </div>
+            </div>
+
         </div>
 
     </section>
@@ -236,24 +259,64 @@ export default {
                 region: ""
             },
 
-            ratesResponse: [],
+            results: false,
 
-            formFilled: false
+            ratesResults: [],
+
+            formFilled: false,
+
+            loading: false
         }
     },
     
     methods:{
+        
         async getRates(){
-            await axios.post('api/rates', this.rates)
-                .then(response=>{
-                    this.ratesResponse = response.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+            this.loading = true;
 
+            if(this.rates.name != "" && 
+               this.rates.address1 != "" &&
+               this.rates.city != "" &&
+               this.rates.province_code != "" &&
+               this.rates.postal_code != "" &&
+               this.rates.country_code != "" &&
+               this.rates.weight_unit != "" &&
+               this.rates.weight != "" &&
+               this.rates.size_unit != "" &&
+               this.rates.package_contents != "" &&
+               this.rates.value != "" &&
+               this.rates.currency != "" &&
+               this.rates.package_type != ""){
+
+                    this.loading = true;
+
+                    await axios.post('api/rates', this.rates)
+                    .then(response=>{
+                        this.ratesResults = response.data;
+                        this.results = true;
+                        this.loading = false;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            }else{
+                this.formFilled = true;
+            }
+
+        },
+
+        checkResults(){
+            if (this.ratesResults === ""){
+                this.loading = false;
+            }
         }
-    }
+
+    },
+
+    // updated(){
+
+    //     this.checkResults();
+    // },
     
 }
 </script>

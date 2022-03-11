@@ -11,26 +11,26 @@
                     <form class="row g-3 mt-4" @submit.prevent="getRates">
                         <div class="col-12">
                             <label for="name" class="form-label">Name</label>
-                            <input v-model="rates.name" type="text" class="form-control" id="name">
+                            <input required v-model="rates.name" type="text" class="form-control" id="name">
                         </div>
                         <div class="col-12">
                             <label for="inputAddress" class="form-label">Address</label>
-                            <input v-model="rates.address1" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <input required v-model="rates.address1" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                         </div>
                         <div class="col-12">
                             <label for="inputAddress2" class="form-label">Address 2</label>
-                            <input v-model="rates.address2" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                            <input required v-model="rates.address2" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                         </div>
                         <!--  -->
                         <div class="col-md-3">
                             <label for="countryCode" class="form-label">Country Code</label>
-                            <select v-model="rates.country_code" id="countryCode" class="form-select">
+                            <select required v-model="rates.country_code" id="countryCode" class="form-select">
                                 <option value="US">US</option>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <label for="inputCity" class="form-label">City</label>
-                            <input v-model="rates.city" type="text" class="form-control" id="inputCity">
+                            <input required v-model="rates.city" type="text" class="form-control" id="inputCity">
                         </div>
                         <div class="col-md-3">
                             <label for="inputState" class="form-label">Province Code</label>
@@ -99,12 +99,13 @@
                             <select v-model="rates.region" id="region" class="form-select">
                                 <option value="ON">ON</option>
                                 <option value="BC">BC</option>
+                                <option value="QC">QC</option>
                             </select>
                         </div>
 
                         <div class="col-8">
                             <label for="packageContents" class="form-label">Package Contents</label>
-                            <input v-model="rates.package_contents" type="text" class="form-control" id="packageContents" placeholder="Two pair of socks">
+                            <input required v-model="rates.package_contents" type="text" class="form-control" id="packageContents" placeholder="Two pair of socks">
                         </div>
                         
 
@@ -113,36 +114,38 @@
 
                         <div class="col-md-4">
                             <label for="weight" class="form-label">Weight</label>
-                            <input v-model="rates.weight" type="number" step="0.1" min="0" max="1000" class="form-control" id="weight">
+                            <input required v-model.number="rates.weight" type="number" step="0.1" min="0" max="1000" class="form-control" id="weight">
                         </div>
                         <div class="col-md-4">
                             <label for="weight_unit" class="form-label">Weight Unit </label>
-                            <select v-model="rates.weight_unit" id="weight_unit" class="form-select">
+                            <select required v-model="rates.weight_unit" id="weight_unit" class="form-select">
                                 <option value="lbs">lbs</option>
                                 <option value="oz">oz</option>
+                                <option value="g">g</option>
                                 <option value="kg">kg</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="length" class="form-label">Length</label>
-                            <input v-model="rates.length" type="number" min="0" max="1000" class="form-control" id="length">
+                            <input v-model.number="rates.length" type="number" min="0" max="1000" class="form-control" id="length">
                         </div>
 
                         <!--  -->
                         <div class="col-md-4">
                             <label for="value" class="form-label">Value</label>
-                            <input v-model="rates.value" type="number" min="0" max="1000" class="form-control" id="value">
+                            <input required v-model.number="rates.value" type="number" min="0" max="1000" class="form-control" id="value">
                         </div>
                         <div class="col-md-4">
                             <label for="currency" class="form-label">Currency</label>
-                            <select v-model="rates.currency" id="currency" class="form-select">
+                            <select required v-model="rates.currency" id="currency" class="form-select">
                                 <option value="CAD">CAD</option>
+                                <option value="USD">USD</option>
                             </select>
                         </div>
 
                         <div class="col-md-4">
                             <label for="package_type" class="form-label">Package Type</label>
-                            <select v-model="rates.package_type" id="package_type" class="form-select">
+                            <select required v-model="rates.package_type" id="package_type" class="form-select">
                                 <option value="Parcel">Parcel</option>
                             </select>
                         </div>
@@ -150,18 +153,19 @@
                         <!--  -->
                         <div class="col-md-4">
                             <label for="width" class="form-label">Width</label>
-                            <input v-model="rates.width" type="number" min="0" max="1000" class="form-control" id="width">
+                            <input v-model.number="rates.width" type="number" min="0" max="1000" class="form-control" id="width">
                         </div>
 
                         <div class="col-md-4">
                             <label for="height" class="form-label">height</label>
-                            <input v-model="rates.height" type="number" min="0" max="1000" class="form-control" id="height">
+                            <input v-model.number="rates.height" type="number" min="0" max="1000" class="form-control" id="height">
                         </div>
 
                         <div class="col-md-4">
                             <label for="size_unit" class="form-label">size Unit </label>
-                            <select v-model="rates.size_unit" id="size_unit" class="form-select">
+                            <select required v-model.number="rates.size_unit" id="size_unit" class="form-select">
                                 <option value="cm">cm</option>
+                                <option value="in">in</option>
                             </select>
                         </div>
 
@@ -197,12 +201,12 @@
             
         </div>
 
-
-
     </section>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: "rates",
 
@@ -232,13 +236,21 @@ export default {
                 region: ""
             },
 
+            ratesResponse: [],
+
             formFilled: false
         }
     },
     
     methods:{
-        getRates(){
-            console.log(this.rates);
+        async getRates(){
+            await axios.post('api/rates', this.rates)
+                .then(response=>{
+                    this.ratesResponse = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
 
         }
     }

@@ -46,3 +46,5 @@ Route::group(['middleware' => 'guest:api'], function () {
 });
 
 Route::resource('note', App\Http\Controllers\Note\NoteController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
+
+Route::post('rates', [App\Http\Controllers\Rates\RatesController::class, 'getRates']);

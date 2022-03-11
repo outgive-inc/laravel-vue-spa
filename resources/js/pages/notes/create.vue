@@ -28,10 +28,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 
 export default {
     name: 'create-note',
+
+    middleware: 'auth',
+
+    computed: mapGetters({
+        user: 'auth/user'
+    }),
+
 
     data(){
         return{

@@ -44,3 +44,7 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
 });
+
+Route::resource('note', App\Http\Controllers\Note\NoteController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
+
+Route::post('rates', [App\Http\Controllers\Rates\RatesController::class, 'getRates']);

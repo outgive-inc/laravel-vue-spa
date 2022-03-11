@@ -19,7 +19,7 @@
 
                 <div class="mb-3 col-lg-6">
                     <button class="btn btn-primary" type="submit">Submit</button>
-                    <router-link class="btn btn-danger" :to="{name: 'home'}" tag="button">Cancel</router-link>
+                    <router-link class="btn btn-danger" :to="{name: 'notes'}" tag="button">Cancel</router-link>
 
                 </div>
             </form>

@@ -215,9 +215,9 @@
             <div  v-for="(rates, index) in ratesResults.rates" :key="index"  class="card border-secondary mb-3 mt-4">
                 <div class="card-body text-secondary">
                     <h5 class="card-title">{{ratesResults.rates[index].postage_type}}</h5>
-                    <p class="card-text">Rate: $ {{ratesResults.rates[index].rate}} {{ratesResults.rates.currency}}</p>
+                    <p class="card-text">Rate: $ {{ratesResults.rates[index].rate}} {{ratesResults.rates[index].currency}}</p>
                     <p class="card-text">Tax: {{ratesResults.rates[index].tax}}</p>
-                    <p class="card-text">Total: $ {{ratesResults.rates[index].total}} {{ratesResults.rates.currency}}</p>
+                    <p class="card-text">Total: $ {{ratesResults.rates[index].total}} {{ratesResults.rates[index].currency}}</p>
                     <p class="card-text">Delivery in {{ratesResults.rates[index].delivery_days}} Business days</p>
                 </div>
             </div>

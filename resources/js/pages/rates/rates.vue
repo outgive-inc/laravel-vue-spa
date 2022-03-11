@@ -8,7 +8,7 @@
             <div class="row"> 
                 <div class="col">
                     <!-- Rates form -->
-                    <form class="row g-3 mt-4">
+                    <form class="row g-3 mt-4" @submit.prevent="getRates">
                         <div class="col-12">
                             <label for="name" class="form-label">Name</label>
                             <input v-model="rates.name" type="text" class="form-control" id="name">
@@ -235,6 +235,13 @@ export default {
             formFilled: false
         }
     },
+    
+    methods:{
+        getRates(){
+            console.log(this.rates);
+
+        }
+    }
     
 }
 </script>

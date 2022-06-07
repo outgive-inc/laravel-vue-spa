@@ -34,7 +34,7 @@ _Note: There is already JWT authentication implemented for the app._
 6.  Create phpunit tests for the new feature
 
 ### Part 2: Shipment Rate API
-- Documentation: https://app.swaggerhub.com/apis-docs/outgive-inc/stallionexpress/3.0
+- Documentation: https://stallionexpress.redoc.ly
 - Environment URL: https://sandbox.stallionexpress.ca/api/v3
 - Bearer Token: {sent via email}
 
